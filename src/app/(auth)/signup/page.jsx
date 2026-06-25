@@ -1,6 +1,7 @@
 'use client';
 
 import { authClient } from '@/lib/auth-client';
+import { uploadImage } from '@/lib/uploadImage';
 import {
   Button,
   Description,
@@ -15,26 +16,29 @@ export default function SignUpPage() {
   const onSubmit = async e => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = {};
+    const formEntries = Object.fromEntries(formData.entries())
+    const image = await uploadImage(formEntries.image)
 
-    // Convert FormData to plain object
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-
-    console.log(data)
+    
+    console.log('imgbb respose',image.data.url)
+    console.log(formEntries)
 
     // authontication
-    // const { data: res, error } = await authClient.signUp.email({
-    //   ...data,
-    // });
-    // console.log({ res, error });
+    const { data, error } = await authClient.signUp.email({
+        ...formEntries,
+        image: image.data.url,
+    });
+    console.log({ data, error });
   };
 
   return (
     <>
       <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
-
+        <TextField isRequired >
+          <Label>Image</Label>
+          <input type="file" name="image" />
+          <FieldError/>
+        </TextField>
 
         <TextField isRequired name="name" type="text">
           <Label>Name</Label>

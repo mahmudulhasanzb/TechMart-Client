@@ -1,13 +1,16 @@
 'use client'
+import { uploadImage } from '@/lib/uploadImage';
 import React from 'react';
 
 const AddProductPage = () => {
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-    const formData = new FormData(e.currentTarget)
+    const formData = new FormData(e.target)
     const data = Object.fromEntries(formData.entries())
-    console.log(data)
+    const upload = await uploadImage(data.image)
+    console.log(upload.url)
+
   }
 
   return (
@@ -23,7 +26,7 @@ const AddProductPage = () => {
           <input name="description" type="text" className="border-2" />
           <label> Image: </label>
           <input name="image" type="file" className="border-2" />
-          <button type='submit' className='bg-amber-900 text-2xl'>Submit</button>
+          <button type='submit' className='bg-amber-900 text-2xl cursor-pointer my-2'>Submit</button>
         </form>
     </div>
   );
