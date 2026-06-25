@@ -1,11 +1,18 @@
-"use client";
+'use client';
 
-import { authClient } from "@/lib/auth-client";
-import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import { authClient } from '@/lib/auth-client';
+import {
+  Button,
+  Description,
+  FieldError,
+  Form,
+  Input,
+  Label,
+  TextField,
+} from '@heroui/react';
 
 export default function SignUpPage() {
-
-  const onSubmit = async (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = {};
@@ -15,16 +22,20 @@ export default function SignUpPage() {
       data[key] = value.toString();
     });
 
-    const { data: res, error } = await authClient.signUp.email({
-      ...data
-    })
+    console.log(data)
 
-    console.log({res, error })
+    // authontication
+    // const { data: res, error } = await authClient.signUp.email({
+    //   ...data,
+    // });
+    // console.log({ res, error });
   };
 
   return (
     <>
       <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+
+
         <TextField isRequired name="name" type="text">
           <Label>Name</Label>
           <Input placeholder="john doe" />
@@ -83,7 +94,6 @@ export default function SignUpPage() {
         </div>
         <Button variant="secondary">login with Google</Button>
       </Form>
-
     </>
   );
 }

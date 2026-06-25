@@ -22,7 +22,7 @@ const SignInPage = () => {
     })
     
   }
-  
+
   const handleGoogleSignIn = async () => {
     await authClient.signIn.social({
      provider: 'google'
@@ -33,6 +33,7 @@ const SignInPage = () => {
   return (
     <>
       <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+       
         <TextField
           isRequired
           name="email"
