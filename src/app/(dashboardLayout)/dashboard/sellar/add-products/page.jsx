@@ -7,10 +7,10 @@ const AddProductPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
-    const data = Object.fromEntries(formData.entries())
-    const upload = await uploadImage(data.image)
-    console.log(upload.url)
-
+    const formEntries = Object.fromEntries(formData.entries())
+    const image = await uploadImage(formEntries.image)
+    // console.log(image.data.url)
+    // console.log('formEntries:', formEntries)
   }
 
   return (
