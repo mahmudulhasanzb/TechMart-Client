@@ -1,16 +1,45 @@
-
 import { Button, Drawer } from '@heroui/react';
-import { Bell, Home, Mail, Menu, PersonStanding, Plus, Search, Settings } from 'lucide-react';
+import {
+  Bell,
+  Home,
+  Mail,
+  Menu,
+  PersonStanding,
+  Plus,
+  Search,
+  Settings,
+} from 'lucide-react';
 import Link from 'next/link';
 
 export function DashboardSidebar() {
   const navItems = [
-    { icon: Plus, label: 'Add Products', path: '/dashboard/sellar/add-products' },
-    { icon: Search, label: 'Products', path: '/dashboard/sellar/products' },
-    { icon: Bell, label: 'Notifications', path: '/dashboard/sellar/notifications' },
-    { icon: Mail, label: 'Messages', path: '/dashboard/sellar/messages' },
-    { icon: PersonStanding, label: 'Profile', path: '/dashboard/sellar/profile' },
-    { icon: Settings, label: 'Settings', path: '/dashboard/sellar/settings' },
+    {
+      icon: Plus,
+      label: 'Add Products',
+      path: '/dashboard/sellar/add-products',
+    },
+    {
+      icon: Search, label: 'Products',
+      path: '/dashboard/sellar/products'
+    },
+    {
+      icon: Bell,
+      label: 'Notifications',
+      path: '/dashboard/sellar/notifications',
+    },
+    {
+      icon: Mail, label: 'Messages',
+      path: '/dashboard/sellar/messages'
+    },
+    {
+      icon: PersonStanding,
+      label: 'Profile',
+      path: '/dashboard/sellar/profile',
+    },
+    {
+      icon: Settings, label: 'Settings',
+      path: '/dashboard/sellar/settings'
+    },
   ];
 
   return (
@@ -21,15 +50,15 @@ export function DashboardSidebar() {
       </Button>
 
       <Drawer.Backdrop>
-        <Drawer.Content placement="left" >
+        <Drawer.Content placement="left">
           <Drawer.Dialog>
             <Drawer.CloseTrigger />
 
             <Drawer.Header>
-              <Drawer.Heading >Navigation</Drawer.Heading>
+              <Drawer.Heading>Navigation</Drawer.Heading>
             </Drawer.Header>
 
-            <Drawer.Body >
+            <Drawer.Body>
               <nav className="flex flex-col gap-1">
                 {navItems.map(item => (
                   <Link
